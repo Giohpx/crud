@@ -10,21 +10,21 @@ class CursoController extends Controller
    public function index()
     {
        $linhas = Curso::All();
-         return view('admin.crud.index', compact('linhas'));
+         return view('admin.cursos.index', compact('linhas'));
     }
       public function adicionar()
       {
-         return view('admin.crud.create');
+         return view('admin.cursos.create');
       }
-      public function editar($id)
+      public function editar(int $id)
       {
          $linha = Curso::find($id);
-         return view('admin.crud.edit', compact('linha'));
+         return view('admin.cursos.edit', compact('linha'));
       }
-       public function excluir($id)
+       public function excluir(int $id)
       {
         Curso::find($id)->delete();
-         return redirect()->route('admin.crud');
+         return redirect()->route('admin.cursos');
       }
       public function salvar(Request $req)
       {
@@ -34,7 +34,7 @@ class CursoController extends Controller
             $dados['publicado'] = 'sim';
          }
          else{
-         $dados['publicado'] = 'nao';
+         $dados['publicado'] = 'não';
          }
          if($req->hasFile('arquivo')){
             $imagem = $req->file('arquivo');
@@ -47,16 +47,16 @@ class CursoController extends Controller
          
       }
          Curso::create($dados);
-         return redirect()->route('admin.crud');
+         return redirect()->route('admin.cursos');
     
       }
-      public function atualizar(Request $req)
+      public function atualizar(Request $req, $id)
       {     
          $dados = $req->all();
          if(isset($dados['publicado'])){
             $dados['publicado'] = 'sim';
          }else{
-            $dados['publicado'] = 'nao';
+            $dados['publicado'] = 'não';
          }
          if($req->hasFile('arquivo')){
             $imagem = $req->file('arquivo');
@@ -68,6 +68,6 @@ class CursoController extends Controller
             $dados['imagem'] = $dir."/".$nomeImagem;
          }
          Curso::create($dados);
-         return redirect()->route('admin.crud');
+         return redirect()->route('admin.cursos');
       }
 }

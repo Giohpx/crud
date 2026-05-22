@@ -24,10 +24,13 @@ foreach($linha as $linhas)
             <tbody>
             @foreach($linhas as $linha)   <!-- LOOP PRA LER A TABELA -->
                 <tr>
+
                     <td>{{ $linha->id }}</td><td>{{ $linha->titulo }}</td><td>{{ $linha->descricao }}</td>
                     <td>{{ $linha->publicado }}</td><td>{{ $linha->valor }}</td>
                     <td><img src="{{ asset($linha->imagem) }}" alt="{{ $linha->titulo }}"></td>
-                    <td>   <!-- COLUNA COM ALTERAR E EXCLUIR -->
+                    <td>  
+                        
+                        <!-- COLUNA COM ALTERAR E EXCLUIR -->
                         <a class='btn deep-orange' href="{{ route('admin.cursos.editar',$linha->id) }}">Alterar</a>
                         <a class='btn rede' href="{{ route('admin.cursos.excluir',$linha->id) }}">Excluir</a>
                     </td>

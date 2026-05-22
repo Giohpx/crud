@@ -5,22 +5,25 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/admin/crud/adicionar', [
-    'as' => 'admin.crud.adicionar',
+Route::get('/admin/cursos/adicionar', [
+    'as' => 'admin.cursos.adicionar',
     'uses' => 'App\Http\Controllers\Admin\CursoController@adicionar'
 ]);
 
-Route::post('/admin/crud/salvar', [
-    'as' => 'admin.crud.salvar',
+Route::post('/admin/cursos/salvar', [
+    'as' => 'admin.cursos.salvar',
     'uses' => 'App\Http\Controllers\Admin\CursoController@salvar'
 ]);
 
-Route::get('/admin/crud/editar/{id}', [
-    'as' => 'admin.crud.editar',
+Route::put('/admin/cursos/atualizar/{id}',['as'=>'admin.cursos.atualizar',
+'uses'=>'App\Http\Controllers\Admin\CursoController@atualizar']);
+
+Route::get('/admin/cursos/editar/{id}', [
+    'as' => 'admin.cursos.editar',
     'uses' => 'App\Http\Controllers\Admin\CursoController@editar'
 ]);
 
-Route::get('/admin/crud/excluir/{id}', [
-    'as' => 'admin.crud.excluir',
+Route::get('/admin/cursos/excluir/{id}', [
+    'as' => 'admin.cursos.excluir',
     'uses' => 'App\Http\Controllers\Admin\CursoController@excluir'
 ]);
