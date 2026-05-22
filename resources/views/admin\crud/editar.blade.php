@@ -1,0 +1,22 @@
+@extends('layout.site')
+@section('titulo', 'crud')
+@section('conteudo')
+
+<div class="container">
+    <h3 class="center">Editando Curso</h3>
+
+    <div class="linha">
+        <form class="" action="{{ route('admin.crud.atualizar', $linha->id) }}"
+              method="post" enctype="multipart/form-data">
+
+            {{ csrf_field() }}
+
+            <input type="hidden" name="_method" value="put">
+
+            @include('admin.crud._form')
+
+            <button class="btn deep-orange">Atualizar</button>
+        </form>
+    </div>
+</div>
+@endsection
