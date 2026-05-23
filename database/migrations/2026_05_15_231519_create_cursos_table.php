@@ -11,9 +11,11 @@ return new class extends Migration
         Schema::create('cursos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('titulo');
-            $table->string('celular');
-            $table->string('imagem');
-            $table->foreign('id_curso')->references('id')->on('cursos');
+            $table->string('descricao');
+            $table->string('imagem')->nullable();
+            $table->decimal('valor', 5,2);
+            $table->enum('publicado', ['sim', 'não'])->default('não');
+            $table->timestamps();
         });
     }
     public function down(): void

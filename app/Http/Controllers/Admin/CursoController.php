@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use app\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use app\Models\Curso;
+use App\Models\Curso;
 class CursoController extends Controller
 {
    public function index()
@@ -12,6 +12,9 @@ class CursoController extends Controller
        $linhas = Curso::All();
          return view('admin.cursos.index', compact('linhas'));
     }
+
+    /*Após*/
+    
       public function adicionar()
       {
          return view('admin.cursos.create');
@@ -26,7 +29,7 @@ class CursoController extends Controller
         Curso::find($id)->delete();
          return redirect()->route('admin.cursos');
       }
-      public function salvar(Request $req)
+      public function salvar(Request $req, int $id)
       {
          $dados = $req->all();
 
@@ -50,7 +53,7 @@ class CursoController extends Controller
          return redirect()->route('admin.cursos');
     
       }
-      public function atualizar(Request $req, $id)
+      public function atualizar(Request $req, int $id)
       {     
          $dados = $req->all();
          if(isset($dados['publicado'])){
@@ -67,7 +70,7 @@ class CursoController extends Controller
             $imagem->move($dir,$nomeImagem);
             $dados['imagem'] = $dir."/".$nomeImagem;
          }
-         Curso::create($dados);
+         Curso::find($id)->update($dados);
          return redirect()->route('admin.cursos');
       }
 }

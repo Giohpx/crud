@@ -1,20 +1,13 @@
-@extends('layout.site)
-@section('titulo', 'listagem de cursos')
-@section(conteudo)
-
-
-foreach($linha as $linhas)
-    {{ $linhas['descricao']; }}
-@endforeach
-
-@endsection
+@extends('layout.site')
+@section('titulo', 'Cursos')
+@section('conteudo')
 
 <div class='container'>
  <h3 class='center'>Lista de Cursos</h3>
     <div class='linha'>
         <table>
             <thead>
-                <tr>  <!-- CABECALHO -->
+                <tr>  
                     <td>Id</td><td>Titulo</td><td>Descrição</td>
                     <td>Publicado</td><td>Valor</td>
                     <td>Imagem</td>
@@ -22,7 +15,7 @@ foreach($linha as $linhas)
                 </tr>
             </thead>
             <tbody>
-            @foreach($linhas as $linha)   <!-- LOOP PRA LER A TABELA -->
+            @foreach($linhas as $linha)   
                 <tr>
 
                     <td>{{ $linha->id }}</td><td>{{ $linha->titulo }}</td><td>{{ $linha->descricao }}</td>
@@ -32,7 +25,7 @@ foreach($linha as $linhas)
                         
                         <!-- COLUNA COM ALTERAR E EXCLUIR -->
                         <a class='btn deep-orange' href="{{ route('admin.cursos.editar',$linha->id) }}">Alterar</a>
-                        <a class='btn rede' href="{{ route('admin.cursos.excluir',$linha->id) }}">Excluir</a>
+                        <a class='btn red' href="{{ route('admin.cursos.excluir',$linha->id) }}">Excluir</a>
                     </td>
                 </tr>
             @endforeach
@@ -73,7 +66,7 @@ foreach($linha as $linhas)
 
         <ul class="sidenav" id="mobile">
         <li><a href="/">Home</a></li>
-        <li><a href="{{route('admin.cursos')}}">Cursos</a></li>
+        <li><a href="{{route('admin.curso')}}">Cursos</a></li>
         </ul>
 
 
@@ -88,3 +81,5 @@ foreach($linha as $linhas)
     </script>
     </body>
   </html>
+
+@endsection
